@@ -5,7 +5,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Copy package files
-COPY backend/package*.json ./
+COPY backend/package.json backend/package-lock.json ./
 COPY prisma ./prisma/
 
 # Install all dependencies (including dev for TypeScript compilation)
