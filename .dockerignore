@@ -17,3 +17,7 @@ docs
 .DS_Store
 .vscode
 .idea
+package.json.backup
+.railwayignore
+nixpacks.toml
+railway.json

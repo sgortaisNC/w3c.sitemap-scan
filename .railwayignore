@@ -1,0 +1,7 @@
+# Force Railway to use Dockerfile instead of auto-detection
+package.json
+package-lock.json
+frontend/
+docs/
+*.md
+.gitignore
