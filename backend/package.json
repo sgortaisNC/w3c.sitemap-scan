@@ -5,9 +5,10 @@
   "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run migrate",
     "dev": "tsx watch src/app.ts",
     "start": "node dist/app.js",
+    "migrate": "npx prisma migrate deploy",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -21,7 +22,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@hono/node-server": "^1.12.0",
+    "@hono/node-server": "^1.19.5",
     "@prisma/client": "^5.6.0",
     "bcrypt": "^5.1.1",
     "bullmq": "^4.15.0",
