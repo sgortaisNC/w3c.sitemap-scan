@@ -17,7 +17,7 @@ RUN npm install
 RUN npx prisma generate
 
 # Build the application (compile TypeScript files)
-RUN npm run build:ts
+RUN npm run build
 
 # Remove dev dependencies to reduce image size
 RUN npm prune --production
