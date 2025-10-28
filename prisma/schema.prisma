@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique @db.VarChar(255)
+  hashPassword String    @map("hash_password") @db.VarChar(255)
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+  
+  // Relations
+  credits Credit?
+  scans   Scan[]
+  
+  @@map("users")
+}
+
+model Credit {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique @map("user_id")
+  amount    Int      @default(0)
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("credits")
+}
+
+model Scan {
+  id         Int       @id @default(autoincrement())
+  userId     Int       @map("user_id")
+  sitemapUrl String    @map("sitemap_url") @db.Text
+  startedAt  DateTime  @default(now()) @map("started_at")
+  finishedAt DateTime? @map("finished_at")
+  status     String    @default("pending") @db.VarChar(30) // pending, processing, success, failed
+  errorMsg   String?   @map("error_message") @db.Text
+  totalUrls  Int?      @default(0) @map("total_urls")
+  
+  // Relations
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  scanResults ScanResult[]
+  
+  // Indexes for performance optimization
+  @@index([userId, startedAt])
+  @@index([status, startedAt])
+  @@map("scans")
+}
+
+model ScanResult {
+  id        Int      @id @default(autoincrement())
+  scanId    Int      @map("scan_id")
+  url       String   @db.Text
+  errors    Json?    @db.Json
+  warnings  Json?    @db.Json
+  isValid   Boolean  @default(true) @map("is_valid")
+  checkedAt DateTime @default(now()) @map("checked_at")
+  
+  // Relations
+  scan Scan @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  
+  // Indexes for performance optimization
+  @@index([scanId])
+  @@index([scanId, isValid])
+  @@map("scan_results")
+}
