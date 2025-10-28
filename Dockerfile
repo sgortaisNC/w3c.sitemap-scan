@@ -4,16 +4,14 @@ FROM node:20-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY backend/package.json backend/package-lock.json ./
-COPY prisma ./prisma/
+# Copy all files first
+COPY . .
+
+# Move to backend directory
+WORKDIR /app/backend
 
 # Install all dependencies (including dev for TypeScript compilation)
 RUN npm ci
-
-# Copy source code
-COPY backend/src ./src
-COPY backend/tsconfig.json ./
 
 # Generate Prisma client
 RUN npx prisma generate
