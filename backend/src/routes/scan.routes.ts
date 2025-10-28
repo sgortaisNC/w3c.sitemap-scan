@@ -4,8 +4,8 @@
  */
 
 import { Hono } from 'hono';
-import { scanController } from '@/controllers/scan.controller.js';
-import { authenticate, requireCredits } from '@/middleware/auth.js';
+import { scanController } from '@/controllers/scan.controller';
+import { authenticate, requireCredits } from '@/middleware/auth';
 import { validateBody, validateQuery, validateParams } from '@/utils/validation.js';
 import { scanSchemas, querySchemas } from '@/utils/validation.js';
 import { z } from 'zod';

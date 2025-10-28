@@ -5,7 +5,6 @@
 
 import winston from 'winston';
 import { appConfig } from '@/config/index.js';
-import type { LogLevel } from '@/types/index.js';
 
 /**
  * Custom log format for development

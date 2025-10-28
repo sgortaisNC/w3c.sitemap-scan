@@ -55,12 +55,7 @@ export interface JWTPayload {
  * Extended Hono context with custom properties
  */
 export interface HonoContext extends Context {
-  get: (key: 'user') => UserWithCredits | undefined;
-  get: (key: 'userId') => number | undefined;
-  get: (key: 'userCredits') => number | undefined;
-  get: (key: 'validatedBody') => any;
-  get: (key: 'validatedQuery') => any;
-  get: (key: 'validatedParams') => any;
+  get: (key: 'user' | 'userId' | 'userCredits' | 'validatedBody' | 'validatedQuery' | 'validatedParams') => any;
   set: (key: string, value: any) => void;
 }
 

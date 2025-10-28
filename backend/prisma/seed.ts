@@ -134,7 +134,7 @@ async function main(): Promise<void> {
         console.log(`   ✅ Created scan: ${scan.sitemapUrl} (${scan.status})`);
 
         // Create demo scan results for successful scans
-        if (scan.status === 'success' && scan.totalUrls > 0) {
+        if (scan.status === 'success' && scan.totalUrls && scan.totalUrls > 0) {
           const demoResults = [];
           
           for (let i = 1; i <= scan.totalUrls; i++) {
