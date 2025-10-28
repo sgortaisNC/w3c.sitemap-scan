@@ -11,7 +11,7 @@ COPY . .
 WORKDIR /app/backend
 
 # Install all dependencies (including dev for TypeScript compilation)
-RUN npm ci
+RUN npm install
 
 # Generate Prisma client
 RUN npx prisma generate
