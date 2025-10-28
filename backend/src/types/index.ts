@@ -3,7 +3,7 @@
  * @fileoverview TypeScript interfaces and types used throughout the application
  */
 
-import type { User, Credit, Scan, ScanResult } from '@prisma/client';
+import type { User, Scan, ScanResult } from '@prisma/client';
 import type { Context } from 'hono';
 
 /**

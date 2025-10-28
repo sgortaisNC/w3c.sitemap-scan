@@ -26,7 +26,7 @@ export const generateToken = async (payload: Pick<JWTPayload, 'id' | 'email'>): 
         expiresIn: appConfig.jwt.expiresIn,
         issuer: 'w3c-checker',
         audience: 'w3c-checker-users',
-      }
+      } as jwt.SignOptions
     );
 
     logger.debug('JWT token generated', { userId: payload.id });

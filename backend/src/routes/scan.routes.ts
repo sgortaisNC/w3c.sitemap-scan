@@ -4,12 +4,12 @@
  */
 
 import { Hono } from 'hono';
-import { scanController } from '@/controllers/scan.controller';
-import { authenticate, requireCredits } from '@/middleware/auth';
-import { validateBody, validateQuery, validateParams } from '@/utils/validation.js';
-import { scanSchemas, querySchemas } from '@/utils/validation.js';
+import { scanController } from '@/controllers/scan.controller.js';
+import { authenticate, requireCredits } from '@/middleware/auth.js';
+import { validateBody, validateQuery, validateParams } from '@/utils/validation';
+import { scanSchemas, querySchemas } from '@/utils/validation';
 import { z } from 'zod';
-import type { HonoContext } from '@/types/index.js';
+import type { HonoContext } from '@/types/index';
 
 export const scanRoutes = new Hono<{ Variables: { user: any; userId: number } }>();
 
